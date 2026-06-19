@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -22,6 +23,9 @@ public class ExcelCreateTemplate {
 
     private static final int HEADER_ROW_INDEX = 8;
     private static final int DATA_START_ROW_INDEX = 9;
+
+    // Windows 메모장/배치 txt는 보통 MS949. UTF-8로 저장했으면 "UTF-8"로 변경
+    private static final Charset DATA_FILE_CHARSET = Charset.forName("MS949");
 
     public static void main(String[] args) {
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -80,10 +84,11 @@ public class ExcelCreateTemplate {
             File dataFile = new File(dataFilePath);
 
             if (dataFile.exists()) {
-                br = new BufferedReader(new InputStreamReader(new FileInputStream(dataFile), "UTF-8"));
+                br = new BufferedReader(new InputStreamReader(new FileInputStream(dataFile), DATA_FILE_CHARSET));
                 String line;
 
                 while ((line = br.readLine()) != null) {
+                    line = removeBom(line);
                     if (line.trim().isEmpty()) {
                         continue;
                     }
@@ -137,5 +142,12 @@ public class ExcelCreateTemplate {
                 e.printStackTrace();
             }
         }
+    }
+
+    private static String removeBom(String line) {
+        if (line != null && !line.isEmpty() && line.charAt(0) == '\uFEFF') {
+            return line.substring(1);
+        }
+        return line;
     }
 }
