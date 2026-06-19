@@ -1,0 +1,4 @@
+target/
+output/
+*.xlsx
+dependency-reduced-pom.xml
