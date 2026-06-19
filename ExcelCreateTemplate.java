@@ -24,8 +24,8 @@ public class ExcelCreateTemplate {
     private static final int HEADER_ROW_INDEX = 8;
     private static final int DATA_START_ROW_INDEX = 9;
 
-    // Windows 메모장/배치 txt는 보통 MS949. UTF-8로 저장했으면 "UTF-8"로 변경
-    private static final Charset DATA_FILE_CHARSET = Charset.forName("MS949");
+    // data.txt를 UTF-8로 저장했을 때 사용
+    private static final Charset DATA_FILE_CHARSET = Charset.forName("UTF-8");
 
     public static void main(String[] args) {
         XSSFWorkbook workbook = new XSSFWorkbook();
