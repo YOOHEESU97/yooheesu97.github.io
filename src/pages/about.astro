@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/BlogPost.astro';
+---
+
+<Layout
+	title="About"
+	description="개발자 코딩 노트 블로그 소개"
+	pubDate={new Date('2026-06-20')}
+	tags={['meta']}
+>
+	<p>
+		이 블로그는 개발하면서 배운 것, 정리한 것, 나중에 다시 찾아볼 코딩 노트를 기록하는 공간입니다.
+	</p>
+
+	<p>
+		Astro로 만들었고, GitHub Pages에 배포합니다. 다크모드 미니멀 디자인을 목표로 했습니다.
+	</p>
+
+	<h2>기록하는 것</h2>
+	<ul>
+		<li>기술 스택 비교와 선택 이유</li>
+		<li>API·도구 사용법 정리</li>
+		<li>디버깅과 설계에서 배운 점</li>
+	</ul>
+
+	<p>
+		소스 코드는 <a href="https://github.com/yooheusu97/my-coding-notes">GitHub</a>에서 확인할 수
+		있습니다.
+	</p>
+</Layout>
