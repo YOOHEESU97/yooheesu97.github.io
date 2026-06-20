@@ -1,0 +1,40 @@
+---
+import { GITHUB_URL } from '../consts';
+
+const year = new Date().getFullYear();
+---
+
+<footer>
+	<p>
+		<a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
+		·
+		<a href="/rss.xml">RSS</a>
+	</p>
+	<p class="copyright">&copy; {year} Coding Notes</p>
+</footer>
+
+<style>
+	footer {
+		border-top: 1px solid var(--border);
+		padding: 2rem 0 3rem;
+		text-align: center;
+	}
+
+	footer p {
+		margin: 0;
+		font-size: 0.875rem;
+		color: var(--text-muted);
+	}
+
+	footer p + p {
+		margin-top: 0.5rem;
+	}
+
+	footer a {
+		color: var(--text-muted);
+	}
+
+	footer a:hover {
+		color: var(--accent);
+	}
+</style>

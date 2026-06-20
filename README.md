@@ -1,8 +1,51 @@
-# my-coding-notes
-# 코딩 모델 선택 가이드
-| 상황 | 모델 |
-|------|------|
-| 평소 코딩 질문 | Composer 2.5 |
-| 설명 잘 듣고 싶을 때 | Sonnet 4.6 High |
-| 빠르게만 | Codex 5.3 High Fast |
-| 어려운 설계/디버깅 | Opus 또는 GPT-5.5 |
+# Coding Notes
+
+Astro 기반 개발자 코딩 노트 블로그입니다. 다크모드 미니멀 디자인으로 GitHub Pages에 배포합니다.
+
+**배포 URL:** https://yooheusu97.github.io/my-coding-notes/
+
+## 로컬 개발
+
+```bash
+npm install
+npm run dev
+```
+
+브라우저에서 http://localhost:4321/my-coding-notes/ 로 접속합니다.
+
+## 글 작성
+
+`src/content/blog/` 폴더에 Markdown 파일을 추가합니다.
+
+```md
+---
+title: '글 제목'
+description: '짧은 설명'
+pubDate: 2026-06-20
+tags: ['tag1', 'tag2']
+---
+
+본문 내용...
+```
+
+## 빌드
+
+```bash
+npm run build
+npm run preview
+```
+
+## GitHub Pages 배포
+
+1. GitHub 저장소 **Settings → Pages**에서 Source를 **GitHub Actions**로 설정
+2. `main` 브랜치에 push하면 `.github/workflows/deploy.yml`이 자동 배포
+
+### username.github.io 저장소로 옮길 때
+
+`astro.config.mjs`와 workflow의 `BASE_PATH`를 `/`로 변경하고, `site` URL을 `https://yooheusu97.github.io`로 맞춥니다.
+
+## 스택
+
+- [Astro](https://astro.build/)
+- Markdown Content Collections
+- GitHub Actions + GitHub Pages
