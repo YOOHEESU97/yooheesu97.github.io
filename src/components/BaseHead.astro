@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
 import { SITE_TITLE } from '../consts';
+import { withBase } from '../utils/withBase';
 
 interface Props {
 	title: string;
@@ -15,9 +16,9 @@ const { title, description } = Astro.props;
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
-<link rel="icon" href={`${import.meta.env.BASE_URL}favicon.ico`} />
-<link rel="sitemap" href={`${import.meta.env.BASE_URL}sitemap-index.xml`} />
+<link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
+<link rel="icon" href={withBase('favicon.ico')} />
+<link rel="sitemap" href={withBase('sitemap-index.xml')} />
 <link
 	rel="alternate"
 	type="application/rss+xml"

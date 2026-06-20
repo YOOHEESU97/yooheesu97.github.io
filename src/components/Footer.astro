@@ -1,5 +1,6 @@
 ---
 import { GITHUB_URL } from '../consts';
+import { withBase } from '../utils/withBase';
 
 const year = new Date().getFullYear();
 ---
@@ -8,7 +9,7 @@ const year = new Date().getFullYear();
 	<p>
 		<a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
 		·
-		<a href="/rss.xml">RSS</a>
+		<a href={withBase('rss.xml')}>RSS</a>
 	</p>
 	<p class="copyright">&copy; {year} Coding Notes</p>
 </footer>

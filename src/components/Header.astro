@@ -1,11 +1,12 @@
 ---
 import { SITE_TITLE } from '../consts';
+import { withBase } from '../utils/withBase';
 import HeaderLink from './HeaderLink.astro';
 ---
 
 <header>
 	<nav>
-		<a class="site-title" href="/">{SITE_TITLE}</a>
+		<a class="site-title" href={withBase()}>{SITE_TITLE}</a>
 		<div class="nav-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Notes</HeaderLink>
