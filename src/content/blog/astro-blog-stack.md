@@ -37,8 +37,8 @@ tags: ['astro', 'blog', 'github-pages']
 ```js
 // astro.config.mjs
 export default defineConfig({
-  site: 'https://yooheusu97.github.io',
-  base: '/my-coding-notes',
+  site: 'https://yooheesu97.github.io',
+  base: '/',
 });
 ```
 

@@ -1,4 +1,4 @@
-/** GitHub Pages 서브경로(/my-coding-notes)를 포함한 내부 링크 생성 */
+/** GitHub Pages 내부 링크 생성 (루트 배포 기준) */
 export function withBase(path: string = ''): string {
 	const base = import.meta.env.BASE_URL;
 	const normalizedBase = base.endsWith('/') ? base : `${base}/`;

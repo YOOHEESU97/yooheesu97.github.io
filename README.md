@@ -2,7 +2,7 @@
 
 Astro 기반 개발자 코딩 노트 블로그입니다. 다크모드 미니멀 디자인으로 GitHub Pages에 배포합니다.
 
-**배포 URL:** https://yooheusu97.github.io/my-coding-notes/
+**배포 URL:** https://yooheesu97.github.io/
 
 ## 로컬 개발
 
@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-브라우저에서 http://localhost:4321/my-coding-notes/ 로 접속합니다.
+브라우저에서 http://localhost:4321/ 로 접속합니다.
 
 ## 글 작성
 
@@ -39,10 +39,6 @@ npm run preview
 
 1. GitHub 저장소 **Settings → Pages**에서 Source를 **GitHub Actions**로 설정
 2. `main` 브랜치에 push하면 `.github/workflows/deploy.yml`이 자동 배포
-
-### username.github.io 저장소로 옮길 때
-
-`astro.config.mjs`와 workflow의 `BASE_PATH`를 `/`로 변경하고, `site` URL을 `https://yooheusu97.github.io`로 맞춥니다.
 
 ## 스택
 
