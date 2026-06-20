@@ -2,8 +2,8 @@
 import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
+import PostCard from '../../components/PostCard.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 import { withBase } from '../../utils/withBase';
 
@@ -20,20 +20,22 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 		<Header />
 		<main>
-			<h1>Notes</h1>
+			<div class="page-header">
+				<h1>Notes</h1>
+				<span class="article-count">{posts.length} Articles</span>
+			</div>
 			<p class="intro">개발하면서 정리한 코딩 노트 모음입니다.</p>
-			<ul class="post-list">
+			<ul class="post-grid">
 				{
 					posts.map((post) => (
 						<li>
-							<a href={withBase(`blog/${post.id}/`)}>
-								<h2 class="post-title">{post.data.title}</h2>
-								<p class="post-meta">
-									<FormattedDate date={post.data.pubDate} />
-									{post.data.tags?.map((tag) => <span class="tag">{tag}</span>)}
-								</p>
-								<p class="post-description">{post.data.description}</p>
-							</a>
+							<PostCard
+								href={withBase(`blog/${post.id}/`)}
+								title={post.data.title}
+								description={post.data.description}
+								pubDate={post.data.pubDate}
+								tags={post.data.tags}
+							/>
 						</li>
 					))
 				}
@@ -45,7 +47,8 @@ const posts = (await getCollection('blog')).sort(
 
 <style>
 	.intro {
-		margin: 0 0 0.5rem;
+		margin: -1rem 0 2rem;
 		color: var(--text-muted);
+		font-size: 1.05rem;
 	}
 </style>

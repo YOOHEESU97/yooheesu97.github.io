@@ -2,14 +2,14 @@
 import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import PostCard from '../components/PostCard.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { withBase } from '../utils/withBase';
 
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 5);
+	.slice(0, 4);
 ---
 
 <!doctype html>
@@ -26,26 +26,25 @@ const posts = (await getCollection('blog'))
 			</section>
 
 			<section>
-				<h2>최근 노트</h2>
-				<ul class="post-list">
+				<div class="page-header">
+					<h2 class="section-title">최근 노트</h2>
+					<a class="view-all" href={withBase('blog/')}>모든 노트 보기 →</a>
+				</div>
+				<ul class="post-grid">
 					{
 						posts.map((post) => (
 							<li>
-								<a href={withBase(`blog/${post.id}/`)}>
-									<h3 class="post-title">{post.data.title}</h3>
-									<p class="post-meta">
-										<FormattedDate date={post.data.pubDate} />
-										{post.data.tags?.map((tag) => <span class="tag">{tag}</span>)}
-									</p>
-									<p class="post-description">{post.data.description}</p>
-								</a>
+								<PostCard
+									href={withBase(`blog/${post.id}/`)}
+									title={post.data.title}
+									description={post.data.description}
+									pubDate={post.data.pubDate}
+									tags={post.data.tags}
+								/>
 							</li>
 						))
 					}
 				</ul>
-				<p class="more">
-					<a href={withBase('blog/')}>모든 노트 보기 →</a>
-				</p>
 			</section>
 		</main>
 		<Footer />
@@ -54,29 +53,44 @@ const posts = (await getCollection('blog'))
 
 <style>
 	.hero {
-		margin-bottom: 1rem;
+		text-align: center;
+		margin-bottom: 3rem;
+		padding: 1.5rem 0 0.5rem;
 	}
 
 	.hero h1 {
-		margin-bottom: 0.5rem;
+		margin-bottom: 0.65rem;
+		font-size: 2.75rem;
 	}
 
 	.hero p {
-		margin: 0;
+		margin: 0 auto;
+		max-width: 32rem;
 		color: var(--text-muted);
-		font-size: 1.05rem;
+		font-size: 1.1rem;
+		line-height: 1.65;
 	}
 
-	h2 {
-		font-size: 0.8rem;
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		color: var(--text-muted);
+	.section-title {
 		margin: 0;
+		font-size: 1.75rem;
 	}
 
-	.more {
-		margin-top: 1.5rem;
+	.view-all {
 		font-size: 0.9rem;
+		font-weight: 600;
+		color: var(--text-muted);
+		white-space: nowrap;
+	}
+
+	.view-all:hover {
+		color: var(--accent);
+		text-decoration: none;
+	}
+
+	@media (max-width: 768px) {
+		.hero h1 {
+			font-size: 2rem;
+		}
 	}
 </style>

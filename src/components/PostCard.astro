@@ -1,0 +1,25 @@
+---
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+	href: string;
+	title: string;
+	description: string;
+	pubDate: Date;
+	tags?: string[];
+}
+
+const { href, title, description, pubDate, tags } = Astro.props;
+---
+
+<article class="post-card">
+	<a href={href} class="post-card-link">
+		<h2 class="post-card-title">{title}</h2>
+		<p class="post-card-meta">
+			<FormattedDate date={pubDate} />
+			{tags?.map((tag) => <span class="tag">{tag}</span>)}
+		</p>
+		<p class="post-card-excerpt">{description}</p>
+		<span class="read-more">더 읽기 →</span>
+	</a>
+</article>

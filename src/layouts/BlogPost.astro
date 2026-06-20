@@ -16,12 +16,12 @@ const { title, description, pubDate, updatedDate, tags } = Astro.props;
 	</head>
 	<body>
 		<Header />
-		<main>
+		<main class="is-narrow">
 			<article class="post">
 				<header class="post-header">
 					<h1>{title}</h1>
 					<p class="post-meta">
-						<FormattedDate date={pubDate} />
+						<FormattedDate date={pubDate} />에 작성
 						{
 							tags && tags.length > 0 && (
 								<span class="tags">
@@ -51,22 +51,26 @@ const { title, description, pubDate, updatedDate, tags } = Astro.props;
 
 <style>
 	.post-header {
-		margin-bottom: 2rem;
-		padding-bottom: 1.5rem;
+		text-align: center;
+		margin-bottom: 2.5rem;
+		padding-bottom: 2rem;
 		border-bottom: 1px solid var(--border);
 	}
 
 	.post-header h1 {
-		margin-bottom: 0.75rem;
+		margin-bottom: 1rem;
+		font-size: 2.5rem;
+		line-height: 1.2;
 	}
 
 	.post-meta {
 		margin: 0;
-		font-size: 0.875rem;
+		font-size: 0.9rem;
 		color: var(--text-muted);
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
+		justify-content: center;
 		gap: 0.5rem;
 	}
 
@@ -77,12 +81,27 @@ const { title, description, pubDate, updatedDate, tags } = Astro.props;
 	}
 
 	.updated {
-		margin: 0.5rem 0 0;
-		font-size: 0.8rem;
+		margin: 0.65rem 0 0;
+		font-size: 0.85rem;
 		color: var(--text-muted);
+	}
+
+	.content :global(a) {
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+
+	.content :global(a:hover) {
+		text-decoration: none;
 	}
 
 	.content :global(p:last-child) {
 		margin-bottom: 0;
+	}
+
+	@media (max-width: 768px) {
+		.post-header h1 {
+			font-size: 1.85rem;
+		}
 	}
 </style>
