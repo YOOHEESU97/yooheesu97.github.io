@@ -1,7 +1,7 @@
 ---
 title: 'Python AttributeError: NoneType object has no attribute — None 체크 패턴'
 description: 'Optional 반환, dict.get, ORM 쿼리 결과 None에서 나는 AttributeError 해결'
-pubDate: 2026-07-02
+pubDate: 2026-06-29
 category: python
 tags: ['python', 'error', 'debug']
 ---

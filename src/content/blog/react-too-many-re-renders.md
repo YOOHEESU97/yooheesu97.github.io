@@ -1,7 +1,7 @@
 ---
 title: 'React Too many re-renders — 무한 렌더 루프 고치기'
 description: 'setState를 render body에서 호출하거나 useEffect deps가 잘못됐을 때 나는 에러 해결'
-pubDate: 2026-07-01
+pubDate: 2026-06-28
 category: react
 tags: ['react', 'error', 'hooks']
 ---

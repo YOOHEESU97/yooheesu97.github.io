@@ -1,7 +1,7 @@
 ---
 title: 'Node.js UnhandledPromiseRejectionWarning — async await 빠진 catch'
 description: 'Promise rejection 미처리, async route handler, process.on unhandledRejection'
-pubDate: 2026-07-02
+pubDate: 2026-06-29
 category: nodejs
 tags: ['nodejs', 'promise', 'async']
 ---

@@ -80,7 +80,13 @@ main {
 }
 
 main.is-narrow {
-	width: var(--content-width);
+	width: 100%;
+	max-width: min(70ch, calc(100% - 2rem));
+}
+
+.prose {
+	max-width: 70ch;
+	margin-inline: auto;
 }
 
 h1,

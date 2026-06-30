@@ -1,7 +1,7 @@
 ---
 title: 'Spring Boot Whitelabel Error Page 404 — REST API에서 자주 하는 실수'
 description: 'API인데 HTML Whitelabel 404가 나올 때 원인과 application.properties 설정'
-pubDate: 2026-07-01
+pubDate: 2026-06-28
 category: spring
 tags: ['spring-boot', 'rest', '404']
 ---

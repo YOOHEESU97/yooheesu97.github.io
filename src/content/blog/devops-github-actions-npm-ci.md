@@ -1,7 +1,7 @@
 ---
 title: 'GitHub Actions npm ci 실패 — cache·lockfile·Node 버전 맞추기'
 description: 'package-lock 불일치, actions/setup-node cache, engines 필드로 CI 안정화'
-pubDate: 2026-07-02
+pubDate: 2026-06-29
 category: devops
 tags: ['github-actions', 'npm', 'ci']
 ---

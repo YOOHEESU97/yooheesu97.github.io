@@ -1,7 +1,7 @@
 ---
 title: 'Node.js Error: Cannot find module — 경로·설치·ESM 해결'
 description: 'npm install 누락, 상대경로 오타, type module과 require 혼용'
-pubDate: 2026-07-02
+pubDate: 2026-06-29
 category: nodejs
 tags: ['nodejs', 'npm', 'error']
 ---

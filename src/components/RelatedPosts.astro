@@ -1,0 +1,57 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { withBase } from '../utils/withBase';
+
+interface Props {
+	posts: CollectionEntry<'blog'>[];
+}
+
+const { posts } = Astro.props;
+---
+
+{
+	posts.length > 0 && (
+		<aside class="related">
+			<h2>관련 글</h2>
+			<ul>
+				{posts.map((post) => (
+					<li>
+						<a href={withBase(`blog/${post.id}/`)}>{post.data.title}</a>
+					</li>
+				))}
+			</ul>
+		</aside>
+	)
+}
+
+<style>
+	.related {
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid var(--border);
+	}
+
+	.related h2 {
+		margin: 0 0 1rem;
+		font-size: 1.15rem;
+	}
+
+	.related ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.related li {
+		margin-bottom: 0.6rem;
+	}
+
+	.related a {
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.related a:hover {
+		text-decoration: underline;
+	}
+</style>

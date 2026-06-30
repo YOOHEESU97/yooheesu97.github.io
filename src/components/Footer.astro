@@ -1,16 +1,19 @@
 ---
+import { getCollection } from 'astro:content';
 import { GITHUB_URL } from '../consts';
-import { CATEGORIES } from '../utils/categories';
+import { getCategoriesWithPosts } from '../utils/categoryPosts';
 import { withBase } from '../utils/withBase';
 
 const year = new Date().getFullYear();
+const posts = await getCollection('blog');
+const activeCategories = getCategoriesWithPosts(posts);
 ---
 
 <footer>
 	<div class="footer-inner">
 		<p class="footer-categories">
 			{
-				CATEGORIES.map((category, index) => (
+				activeCategories.map((category, index) => (
 					<>
 						{index > 0 && <span aria-hidden="true">·</span>}
 						<a href={withBase(`category/${category.slug}/`)}>{category.label}</a>

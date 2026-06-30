@@ -1,7 +1,7 @@
 ---
 title: 'Spring DataIntegrityViolationException — duplicate key / unique 제약 해결'
 description: 'JPA save 시 중복 키 예외 처리, 사전 검증 vs 예외 catch, 트랜잭션 롤백 주의'
-pubDate: 2026-07-02
+pubDate: 2026-06-29
 category: spring
 tags: ['spring', 'jpa', 'error']
 ---

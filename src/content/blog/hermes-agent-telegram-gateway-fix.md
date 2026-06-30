@@ -1,7 +1,7 @@
 ---
 title: 'Hermes Agent gateway 연결 — Telegram 봇이 무응답일 때'
 description: 'gateway status, 로그, 토큰·systemd 설정으로 Telegram 연동 디버깅'
-pubDate: 2026-07-01
+pubDate: 2026-06-28
 category: hermes-agent
 tags: ['hermes', 'telegram', 'gateway']
 ---

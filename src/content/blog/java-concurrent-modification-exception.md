@@ -1,7 +1,7 @@
 ---
 title: 'Java ConcurrentModificationException — for-each 돌리면서 remove할 때'
 description: 'Iterator로 안전하게 삭제하고 CopyOnWriteArrayList를 쓰는 경우 정리'
-pubDate: 2026-07-01
+pubDate: 2026-06-28
 category: java
 tags: ['java', 'collections', 'error']
 ---

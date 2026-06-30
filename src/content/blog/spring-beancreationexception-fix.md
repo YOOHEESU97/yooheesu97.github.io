@@ -1,7 +1,7 @@
 ---
 title: 'Spring BeanCreationException — 원인별 해결 가이드'
 description: 'Spring Boot 기동 실패 시 BeanCreationException 스택트레이스를 읽고 고치는 방법'
-pubDate: 2026-07-01
+pubDate: 2026-06-28
 category: spring
 tags: ['spring', 'spring-boot', 'error']
 ---

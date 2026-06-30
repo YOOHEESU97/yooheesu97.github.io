@@ -5,18 +5,25 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import PostCard from '../components/PostCard.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import { CATEGORIES } from '../utils/categories';
+import { getCategoriesWithPosts } from '../utils/categoryPosts';
+import { getReadingTimeMinutes } from '../utils/readingTime';
 import { withBase } from '../utils/withBase';
 
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 4);
+
+const allPosts = await getCollection('blog');
+const activeCategories = getCategoriesWithPosts(allPosts);
 ---
 
 <!doctype html>
 <html lang="ko">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead
+			title={`${SITE_TITLE} — 개발 코딩 노트`}
+			description={SITE_DESCRIPTION}
+		/>
 	</head>
 	<body>
 		<Header />
@@ -40,8 +47,10 @@ const posts = (await getCollection('blog'))
 									title={post.data.title}
 									description={post.data.description}
 									pubDate={post.data.pubDate}
+									updatedDate={post.data.updatedDate}
 									category={post.data.category}
 									tags={post.data.tags}
+									readingTimeMinutes={getReadingTimeMinutes(post.body ?? '')}
 								/>
 							</li>
 						))
@@ -56,7 +65,7 @@ const posts = (await getCollection('blog'))
 				</div>
 				<ul class="category-grid">
 					{
-						CATEGORIES.map((category) => (
+						activeCategories.map((category) => (
 							<li>
 								<a class="category-card" href={withBase(`category/${category.slug}/`)}>
 									<h3>{category.label}</h3>

@@ -1,7 +1,7 @@
 ---
 title: 'React Warning: Each child in a list should have a unique key prop'
 description: 'key 누락·index key·중복 key로 생기는 리스트 렌더 버그 해결'
-pubDate: 2026-07-02
+pubDate: 2026-06-29
 category: react
 tags: ['react', 'warning', 'lists']
 ---

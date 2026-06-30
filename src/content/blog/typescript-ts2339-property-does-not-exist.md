@@ -1,7 +1,7 @@
 ---
 title: 'TypeScript TS2339: Property does not exist on type — 속성 오류 해결'
 description: 'optional chaining, type guard, interface 확장, API 응답 unknown 처리'
-pubDate: 2026-07-02
+pubDate: 2026-06-29
 category: typescript
 tags: ['typescript', 'error', 'react']
 ---

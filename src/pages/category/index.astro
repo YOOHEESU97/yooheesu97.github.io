@@ -4,16 +4,20 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
-import { CATEGORIES } from '../../utils/categories';
+import { getCategoriesWithPosts } from '../../utils/categoryPosts';
 import { withBase } from '../../utils/withBase';
 
 const posts = await getCollection('blog');
+const activeCategories = getCategoriesWithPosts(posts);
 ---
 
 <!doctype html>
 <html lang="ko">
 	<head>
-		<BaseHead title={`Categories | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<BaseHead
+			title={`Categories | ${SITE_TITLE}`}
+			description="Browse coding notes by Java, Spring, React, TypeScript, Python, Node.js, and more."
+		/>
 	</head>
 	<body>
 		<Header />
@@ -24,18 +28,15 @@ const posts = await getCollection('blog');
 			<p class="intro">Browse notes by technology.</p>
 			<ul class="category-grid">
 				{
-					CATEGORIES.map((category) => {
-						const count = posts.filter((post) => post.data.category === category.slug).length;
-						return (
-							<li>
-								<a class="category-card" href={withBase(`category/${category.slug}/`)}>
-									<h2>{category.label}</h2>
-									<p>{category.description}</p>
-									<span class="category-count">{count} posts</span>
-								</a>
-							</li>
-						);
-					})
+					activeCategories.map((category) => (
+						<li>
+							<a class="category-card" href={withBase(`category/${category.slug}/`)}>
+								<h2>{category.label}</h2>
+								<p>{category.description}</p>
+								<span class="category-count">{category.count} posts</span>
+							</a>
+						</li>
+					))
 				}
 			</ul>
 		</main>

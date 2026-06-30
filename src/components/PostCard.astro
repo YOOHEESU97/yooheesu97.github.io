@@ -7,11 +7,14 @@ interface Props {
 	title: string;
 	description: string;
 	pubDate: Date;
+	updatedDate?: Date;
 	category?: CategorySlug;
 	tags?: string[];
+	readingTimeMinutes?: number;
 }
 
-const { href, title, description, pubDate, category, tags } = Astro.props;
+const { href, title, description, pubDate, updatedDate, category, tags, readingTimeMinutes } =
+	Astro.props;
 ---
 
 <article class="post-card">
@@ -19,14 +22,27 @@ const { href, title, description, pubDate, category, tags } = Astro.props;
 		<h2 class="post-card-title">{title}</h2>
 		<p class="post-card-meta">
 			<FormattedDate date={pubDate} />
+			{readingTimeMinutes && <span>· {readingTimeMinutes} min</span>}
+			{updatedDate && <span class="updated-badge">Updated</span>}
 			{
 				category && (
 					<span class="category-badge">{getCategoryLabel(category)}</span>
 				)
 			}
-			{tags?.map((tag) => <span class="tag">{tag}</span>)}
+			{tags?.slice(0, 3).map((tag) => <span class="tag">{tag}</span>)}
 		</p>
 		<p class="post-card-excerpt">{description}</p>
 		<span class="read-more">더 읽기 →</span>
 	</a>
 </article>
+
+<style>
+	.updated-badge {
+		font-size: 0.68rem;
+		font-weight: 700;
+		padding: 0.1rem 0.45rem;
+		border-radius: 999px;
+		color: var(--accent);
+		background: color-mix(in srgb, var(--accent) 12%, transparent);
+	}
+</style>

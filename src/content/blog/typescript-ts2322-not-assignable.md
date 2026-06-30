@@ -1,7 +1,7 @@
 ---
 title: 'TypeScript error TS2322 — Type X is not assignable to type Y 해결'
 description: 'React props, useState 제네릭, API 응답 타입 불일치 때 나는 TS2322 고치기'
-pubDate: 2026-07-01
+pubDate: 2026-06-28
 category: typescript
 tags: ['typescript', 'react', 'error']
 ---

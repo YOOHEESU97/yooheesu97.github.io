@@ -1,7 +1,7 @@
 ---
 title: 'Node.js Error: listen EADDRINUSE — 포트 이미 사용 중 해결'
 description: '3000/8080 포트 점유 프로세스 찾기, kill, 다른 포트로 기동'
-pubDate: 2026-07-02
+pubDate: 2026-06-29
 category: nodejs
 tags: ['nodejs', 'express', 'port']
 ---

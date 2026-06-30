@@ -1,7 +1,7 @@
 ---
 title: 'React TypeError: Cannot read properties of undefined (reading map) 해결'
 description: 'API 로딩 전 map 호출, useState 초기값, optional chaining으로 고치는 방법'
-pubDate: 2026-07-01
+pubDate: 2026-06-28
 category: react
 tags: ['react', 'error', 'hooks']
 ---

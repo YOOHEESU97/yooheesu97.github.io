@@ -1,7 +1,7 @@
 ---
 title: 'Spring Security JWT 401 Unauthorized — 토큰 검증 실패 해결'
 description: 'Bearer 토큰 형식, secret 불일치, 만료·CORS에서 나는 401 디버깅'
-pubDate: 2026-07-02
+pubDate: 2026-06-29
 category: spring
 tags: ['spring', 'security', 'jwt']
 ---

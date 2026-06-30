@@ -1,7 +1,7 @@
 ---
 title: 'GitHub Pages 404 — Astro base 경로 맞추기'
 description: 'user site vs project site, astro.config base, Actions 배포 후 404 해결'
-pubDate: 2026-07-01
+pubDate: 2026-06-28
 category: devops
 tags: ['astro', 'github-pages', '404']
 ---

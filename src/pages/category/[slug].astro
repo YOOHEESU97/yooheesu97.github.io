@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import PostCard from '../../components/PostCard.astro';
 import { SITE_TITLE } from '../../consts';
+import { getReadingTimeMinutes } from '../../utils/readingTime';
 import { CATEGORIES, getCategoryBySlug, type CategorySlug } from '../../utils/categories';
 import { withBase } from '../../utils/withBase';
 
@@ -52,14 +53,16 @@ const posts = (await getCollection('blog'))
 									title={post.data.title}
 									description={post.data.description}
 									pubDate={post.data.pubDate}
+									updatedDate={post.data.updatedDate}
 									category={post.data.category}
 									tags={post.data.tags}
+									readingTimeMinutes={getReadingTimeMinutes(post.body ?? '')}
 								/>
 							</li>
 						))}
 					</ul>
 				) : (
-					<p class="empty">No posts in this category yet.</p>
+					<p class="empty">Coming soon — 글을 준비 중입니다.</p>
 				)
 			}
 			<p class="back-link">

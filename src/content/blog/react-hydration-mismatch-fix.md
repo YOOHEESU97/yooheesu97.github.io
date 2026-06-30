@@ -1,7 +1,7 @@
 ---
 title: 'React Hydration failed — Text content does not match server-rendered HTML'
 description: 'SSR/Next/Astro+React에서 hydration mismatch 원인과 useEffect·suppressHydrationWarning'
-pubDate: 2026-07-02
+pubDate: 2026-06-29
 category: react
 tags: ['react', 'ssr', 'hydration']
 ---

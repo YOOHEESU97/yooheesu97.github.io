@@ -1,7 +1,7 @@
 ---
 title: 'Python ModuleNotFoundError: No module named fastapi — venv 해결'
 description: '가상환경 미활성화, IDE 인터프리터, pip 설치 경로로 모듈 못 찾는 문제'
-pubDate: 2026-07-02
+pubDate: 2026-06-29
 category: python
 tags: ['python', 'fastapi', 'venv']
 ---

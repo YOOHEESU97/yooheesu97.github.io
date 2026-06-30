@@ -4,6 +4,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 import { rehypeWrapTables } from './src/plugins/rehype-wrap-tables.mjs';
+import { rehypeCodeCopy } from './src/plugins/rehype-code-copy.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,7 +12,7 @@ export default defineConfig({
 	base: '/',
 	integrations: [mdx(), sitemap()],
 	markdown: {
-		rehypePlugins: [rehypeWrapTables],
+		rehypePlugins: [rehypeWrapTables, rehypeCodeCopy],
 		shikiConfig: {
 			themes: {
 				light: 'github-light',

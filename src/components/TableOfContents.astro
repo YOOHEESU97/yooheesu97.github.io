@@ -1,0 +1,74 @@
+---
+interface Heading {
+	depth: number;
+	slug: string;
+	text: string;
+}
+
+interface Props {
+	headings: Heading[];
+}
+
+const { headings } = Astro.props;
+const items = headings.filter((heading) => heading.depth >= 2 && heading.depth <= 3);
+---
+
+{
+	items.length >= 3 && (
+		<nav class="toc" aria-label="목차">
+			<p class="toc-title">목차</p>
+			<ol>
+				{items.map((heading) => (
+					<li class={`depth-${heading.depth}`}>
+						<a href={`#${heading.slug}`}>{heading.text}</a>
+					</li>
+				))}
+			</ol>
+		</nav>
+	)
+}
+
+<style>
+	.toc {
+		margin: 0 0 2rem;
+		padding: 1.1rem 1.25rem;
+		background: var(--bg-elevated);
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+	}
+
+	.toc-title {
+		margin: 0 0 0.75rem;
+		font-size: 0.8rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		color: var(--text-muted);
+	}
+
+	.toc ol {
+		margin: 0;
+		padding-left: 1.1rem;
+	}
+
+	.toc li {
+		margin-bottom: 0.35rem;
+		font-size: 0.9rem;
+		line-height: 1.5;
+	}
+
+	.toc li.depth-3 {
+		margin-left: 0.75rem;
+		font-size: 0.85rem;
+	}
+
+	.toc a {
+		color: var(--text);
+		text-decoration: none;
+	}
+
+	.toc a:hover {
+		color: var(--accent);
+		text-decoration: underline;
+	}
+</style>

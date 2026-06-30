@@ -1,7 +1,7 @@
 ---
 title: 'Java java.lang.OutOfMemoryError: Java heap space — 힙 부족 대응'
 description: '-Xmx 조정, 메모리 누수 의심 지점, heap dump로 원인 찾기'
-pubDate: 2026-07-02
+pubDate: 2026-06-29
 category: java
 tags: ['java', 'jvm', 'memory']
 ---

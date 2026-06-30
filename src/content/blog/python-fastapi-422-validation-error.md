@@ -1,7 +1,7 @@
 ---
 title: 'FastAPI 422 Unprocessable Entity — Pydantic validation 에러 해결'
 description: 'detail 배열 읽는 법, json vs form, Optional 필드·타입 불일치 수정'
-pubDate: 2026-07-02
+pubDate: 2026-06-29
 category: python
 tags: ['python', 'fastapi', 'pydantic']
 ---
