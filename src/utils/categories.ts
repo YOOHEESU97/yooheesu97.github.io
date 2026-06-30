@@ -2,17 +2,32 @@ export const CATEGORIES = [
 	{
 		slug: 'java',
 		label: 'Java',
-		description: 'Notes on Spring, JVM, and backend development.',
+		description: 'Notes on JVM, collections, and core Java patterns.',
+	},
+	{
+		slug: 'spring',
+		label: 'Spring',
+		description: 'Spring Boot errors, configuration, and REST API troubleshooting.',
 	},
 	{
 		slug: 'react',
 		label: 'React',
-		description: 'Component design, hooks, and frontend patterns.',
+		description: 'Component design, hooks, and frontend error fixes.',
+	},
+	{
+		slug: 'typescript',
+		label: 'TypeScript',
+		description: 'Type errors, strict mode, and React + TS patterns.',
 	},
 	{
 		slug: 'hermes-agent',
 		label: 'Hermes Agent',
 		description: 'Setup, integration pitfalls, and error fixes for Hermes Agent.',
+	},
+	{
+		slug: 'devops',
+		label: 'DevOps',
+		description: 'Astro, GitHub Pages, CI/CD, and deployment notes.',
 	},
 ] as const;
 

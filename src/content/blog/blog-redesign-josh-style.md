@@ -2,6 +2,7 @@
 title: '블로그 디자인 손본 기록 — 카드, 다크모드, 코드 하이라이트'
 description: 'Josh W. Comeau 블로그를 참고해 Astro 코딩 노트 사이트를 꾸민 과정과 적용한 설정'
 pubDate: 2026-06-21
+category: devops
 tags: ['astro', 'css', 'blog']
 ---
 

@@ -3,6 +3,7 @@ title: 'Astro로 개발자 블로그 만들기'
 description: 'Jekyll, Hugo, Next.js와 비교했을 때 Astro를 선택한 이유'
 pubDate: 2026-06-20
 updatedDate: 2026-06-30
+category: devops
 tags: ['astro', 'blog', 'github-pages']
 ---
 

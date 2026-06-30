@@ -2,6 +2,7 @@
 title: 'Astro 블로그 GitHub Pages 배포 — 오늘 겪은 문제들'
 description: '404, AdSense 확인 실패, Custom domain 오해까지. 오늘 블로그 올리면서 막혔던 것과 해결 방법'
 pubDate: 2026-06-20
+category: devops
 tags: ['astro', 'github-pages', 'debug']
 ---
 
