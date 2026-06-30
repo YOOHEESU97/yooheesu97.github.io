@@ -44,4 +44,5 @@ npm run preview
 
 - [Astro](https://astro.build/)
 - Markdown Content Collections
+- [MDX](https://mdxjs.com/)
 - GitHub Actions + GitHub Pages
