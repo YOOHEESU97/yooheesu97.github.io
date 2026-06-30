@@ -59,11 +59,11 @@ const posts = (await getCollection('blog'))
 						))}
 					</ul>
 				) : (
-					<p class="empty">아직 이 카테고리에 글이 없습니다. 곧 추가할 예정입니다.</p>
+					<p class="empty">No posts in this category yet.</p>
 				)
 			}
 			<p class="back-link">
-				<a href={withBase('category/')}>← 모든 카테고리</a>
+				<a href={withBase('category/')}>← All categories</a>
 			</p>
 		</main>
 		<Footer />

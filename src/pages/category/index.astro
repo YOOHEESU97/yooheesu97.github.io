@@ -13,15 +13,15 @@ const posts = await getCollection('blog');
 <!doctype html>
 <html lang="ko">
 	<head>
-		<BaseHead title={`카테고리 | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<BaseHead title={`Categories | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
 		<main>
 			<div class="page-header">
-				<h1>카테고리</h1>
+				<h1>Categories</h1>
 			</div>
-			<p class="intro">기술별로 정리한 코딩 노트입니다.</p>
+			<p class="intro">Browse notes by technology.</p>
 			<ul class="category-grid">
 				{
 					CATEGORIES.map((category) => {
@@ -31,7 +31,7 @@ const posts = await getCollection('blog');
 								<a class="category-card" href={withBase(`category/${category.slug}/`)}>
 									<h2>{category.label}</h2>
 									<p>{category.description}</p>
-									<span class="category-count">{count}개 글</span>
+									<span class="category-count">{count} posts</span>
 								</a>
 							</li>
 						);

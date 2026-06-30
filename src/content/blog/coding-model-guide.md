@@ -3,7 +3,6 @@ title: '코딩 모델 선택 가이드'
 description: '상황별로 어떤 AI 코딩 모델을 쓰면 좋은지 정리한 노트'
 pubDate: 2026-06-20
 updatedDate: 2026-06-30
-category: hermes-agent
 tags: ['ai', 'workflow', 'cursor']
 ---
 

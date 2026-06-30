@@ -3,8 +3,7 @@ title: 'Cursor Cloud Agent API란?'
 description: 'Cursor 에이전트를 HTTP API로 호출해 GitHub 저장소 작업을 자동화하는 방법'
 pubDate: 2026-06-20
 updatedDate: 2026-06-30
-category: hermes-agent
-tags: ['cursor', 'api', 'automation', 'hermes']
+tags: ['cursor', 'api', 'automation']
 ---
 
 Cursor 쓰다가 "이거 API로도 호출할 수 있지 않을까?" 해서 알아봤는데, **Cloud Agent API**가 있더라고요. 저장소에서 돌아가는 코딩 에이전트를 HTTP로 실행하고 관리할 수 있습니다. Hermes Agent랑 비슷해 보이지만, 성격은 꽤 다릅니다. 함께 정리해 볼게요.

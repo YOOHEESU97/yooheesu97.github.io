@@ -2,17 +2,17 @@ export const CATEGORIES = [
 	{
 		slug: 'java',
 		label: 'Java',
-		description: 'Spring, JVM, 백엔드 개발에서 정리한 노트입니다.',
+		description: 'Notes on Spring, JVM, and backend development.',
 	},
 	{
 		slug: 'react',
 		label: 'React',
-		description: '컴포넌트 설계, 훅, 프론트엔드 패턴을 다룹니다.',
+		description: 'Component design, hooks, and frontend patterns.',
 	},
 	{
 		slug: 'hermes-agent',
 		label: 'Hermes Agent',
-		description: 'AI 에이전트, Cursor API, 자동화 워크플로를 정리합니다.',
+		description: 'Setup, integration pitfalls, and error fixes for Hermes Agent.',
 	},
 ] as const;
 
