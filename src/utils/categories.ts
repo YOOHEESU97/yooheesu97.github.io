@@ -20,6 +20,16 @@ export const CATEGORIES = [
 		description: 'Type errors, strict mode, and React + TS patterns.',
 	},
 	{
+		slug: 'python',
+		label: 'Python',
+		description: 'FastAPI, virtualenv, and common Python runtime errors.',
+	},
+	{
+		slug: 'nodejs',
+		label: 'Node.js',
+		description: 'npm, Express, and Node runtime error fixes.',
+	},
+	{
 		slug: 'hermes-agent',
 		label: 'Hermes Agent',
 		description: 'Setup, integration pitfalls, and error fixes for Hermes Agent.',
