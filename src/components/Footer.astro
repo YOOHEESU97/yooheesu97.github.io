@@ -1,5 +1,6 @@
 ---
 import { GITHUB_URL } from '../consts';
+import { CATEGORIES } from '../utils/categories';
 import { withBase } from '../utils/withBase';
 
 const year = new Date().getFullYear();
@@ -7,10 +8,22 @@ const year = new Date().getFullYear();
 
 <footer>
 	<div class="footer-inner">
+		<p class="footer-categories">
+			{
+				CATEGORIES.map((category, index) => (
+					<>
+						{index > 0 && <span aria-hidden="true">·</span>}
+						<a href={withBase(`category/${category.slug}/`)}>{category.label}</a>
+					</>
+				))
+			}
+		</p>
 		<p class="footer-links">
 			<a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
 			<span aria-hidden="true">·</span>
 			<a href={withBase('rss.xml')}>RSS</a>
+			<span aria-hidden="true">·</span>
+			<a href={withBase('privacy/')}>개인정보처리방침</a>
 		</p>
 		<p class="copyright">&copy; {year} Coding Notes</p>
 	</div>
@@ -35,11 +48,17 @@ const year = new Date().getFullYear();
 		color: var(--text-muted);
 	}
 
+	.footer-categories,
 	.footer-links {
 		display: flex;
+		flex-wrap: wrap;
 		align-items: center;
 		justify-content: center;
 		gap: 0.5rem;
+	}
+
+	.footer-links {
+		margin-top: 0.6rem;
 	}
 
 	footer a {

@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import PostCard from '../components/PostCard.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { CATEGORIES } from '../utils/categories';
 import { withBase } from '../utils/withBase';
 
 const posts = (await getCollection('blog'))
@@ -39,8 +40,28 @@ const posts = (await getCollection('blog'))
 									title={post.data.title}
 									description={post.data.description}
 									pubDate={post.data.pubDate}
+									category={post.data.category}
 									tags={post.data.tags}
 								/>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+
+			<section class="categories-section">
+				<div class="page-header">
+					<h2 class="section-title">카테고리</h2>
+					<a class="view-all" href={withBase('category/')}>전체 보기 →</a>
+				</div>
+				<ul class="category-grid">
+					{
+						CATEGORIES.map((category) => (
+							<li>
+								<a class="category-card" href={withBase(`category/${category.slug}/`)}>
+									<h3>{category.label}</h3>
+									<p>{category.description}</p>
+								</a>
 							</li>
 						))
 					}
@@ -91,6 +112,57 @@ const posts = (await getCollection('blog'))
 	@media (max-width: 768px) {
 		.hero h1 {
 			font-size: 2rem;
+		}
+	}
+
+	.categories-section {
+		margin-top: 3.5rem;
+	}
+
+	.category-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.25rem;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.category-card {
+		display: block;
+		height: 100%;
+		padding: 1.35rem 1.4rem;
+		background: var(--bg-card);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-sm);
+		text-decoration: none;
+		color: inherit;
+		transition:
+			box-shadow 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.category-card:hover {
+		box-shadow: var(--shadow-md);
+		transform: translateY(-2px);
+		color: inherit;
+	}
+
+	.category-card h3 {
+		margin: 0 0 0.5rem;
+		font-size: 1.15rem;
+	}
+
+	.category-card p {
+		margin: 0;
+		font-size: 0.9rem;
+		line-height: 1.6;
+		color: var(--text-muted);
+	}
+
+	@media (max-width: 900px) {
+		.category-grid {
+			grid-template-columns: 1fr;
 		}
 	}
 </style>

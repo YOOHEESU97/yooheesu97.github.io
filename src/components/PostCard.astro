@@ -1,15 +1,17 @@
 ---
 import FormattedDate from './FormattedDate.astro';
+import { getCategoryLabel, type CategorySlug } from '../utils/categories';
 
 interface Props {
 	href: string;
 	title: string;
 	description: string;
 	pubDate: Date;
+	category?: CategorySlug;
 	tags?: string[];
 }
 
-const { href, title, description, pubDate, tags } = Astro.props;
+const { href, title, description, pubDate, category, tags } = Astro.props;
 ---
 
 <article class="post-card">
@@ -17,6 +19,11 @@ const { href, title, description, pubDate, tags } = Astro.props;
 		<h2 class="post-card-title">{title}</h2>
 		<p class="post-card-meta">
 			<FormattedDate date={pubDate} />
+			{
+				category && (
+					<span class="category-badge">{getCategoryLabel(category)}</span>
+				)
+			}
 			{tags?.map((tag) => <span class="tag">{tag}</span>)}
 		</p>
 		<p class="post-card-excerpt">{description}</p>

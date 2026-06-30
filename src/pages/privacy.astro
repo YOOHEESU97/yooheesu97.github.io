@@ -1,0 +1,103 @@
+---
+import Layout from '../layouts/BlogPost.astro';
+import { withBase } from '../utils/withBase';
+---
+
+<Layout
+	title="개인정보처리방침"
+	description="Coding Notes 개인정보처리방침 — Google AdSense 및 쿠키 사용 안내"
+	pubDate={new Date('2026-06-30')}
+	tags={['meta']}
+>
+	<p>
+		Coding Notes(<a href="https://yooheesu97.github.io/">https://yooheesu97.github.io/</a>)는 방문자의
+		개인정보를 존중하며, 관련 법령을 준수합니다. 본 방침은 사이트 이용 시 적용되는 개인정보 처리
+		방식을 설명합니다.
+	</p>
+
+	<p><strong>최종 수정일:</strong> 2026년 6월 30일</p>
+
+	<h2>1. 수집하는 개인정보</h2>
+	<p>
+		본 사이트는 회원가입, 댓글, 뉴스레터 구독 등을 제공하지 않으며, 방문자가 직접 입력하는
+		개인정보를 별도로 수집하지 않습니다.
+	</p>
+
+	<h2>2. 자동으로 수집될 수 있는 정보</h2>
+	<p>사이트 방문 시 아래 정보가 자동으로 생성·수집될 수 있습니다.</p>
+	<ul>
+		<li>IP 주소, 브라우저 종류, 운영체제, 접속 일시</li>
+		<li>방문한 페이지 URL, 이전에 방문한 사이트(리퍼러)</li>
+		<li>쿠키 및 유사 기술을 통해 수집되는 광고·분석 데이터</li>
+	</ul>
+	<p>
+		호스팅은 GitHub Pages를 사용하며, 서버 로그 처리는 GitHub의 정책을 따릅니다. 자세한 내용은
+		<a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
+			>GitHub Privacy Statement</a
+		>를 참고해 주세요.
+	</p>
+
+	<h2>3. Google AdSense 및 광고 쿠키</h2>
+	<p>
+		본 사이트는 Google AdSense를 통해 광고를 게재할 수 있습니다. Google 및 제3자 광고 파트너는 쿠키,
+		광고 식별자, 기기 정보 등을 사용해 방문 기록에 맞춘 광고를 표시할 수 있습니다.
+	</p>
+	<ul>
+		<li>Google 광고 설정: <a href="https://www.google.com/settings/ads">광고 설정</a></li>
+		<li>
+			맞춤 광고 비활성화(미국 등 일부 지역):
+			<a href="https://optout.aboutads.info/">aboutads.info</a>
+		</li>
+		<li>
+			Google 개인정보처리방침:
+			<a href="https://policies.google.com/privacy">policies.google.com/privacy</a>
+		</li>
+	</ul>
+	<p>AdSense 게시자 ID: <code>ca-pub-7636433001596072</code></p>
+
+	<h2>4. 쿠키 사용 목적</h2>
+	<ul>
+		<li>광고 게재 및 광고 성과 측정</li>
+		<li>사이트 테마(라이트/다크) 설정 저장</li>
+		<li>방문 통계 및 서비스 개선</li>
+	</ul>
+	<p>브라우저 설정에서 쿠키 저장을 거부할 수 있으나, 일부 기능이 제한될 수 있습니다.</p>
+
+	<h2>5. 개인정보의 제3자 제공</h2>
+	<p>
+		본 사이트 운영자는 방문자의 개인정보를 외부에 판매하거나 임의로 제공하지 않습니다. 다만 광고
+		서비스(Google AdSense) 및 호스팅(GitHub Pages) 제공 과정에서 해당 사업자의 정책에 따라 정보가
+		처리될 수 있습니다.
+	</p>
+
+	<h2>6. 외부 링크</h2>
+	<p>
+		본 사이트에는 GitHub, 공식 문서 등 외부 사이트로 연결되는 링크가 포함될 수 있습니다. 외부
+		사이트의 개인정보 처리 방침은 각 사이트 운영자의 책임이며, 본 방침의 적용 범위에 포함되지
+		않습니다.
+	</p>
+
+	<h2>7. 아동의 개인정보</h2>
+	<p>
+		본 사이트는 만 14세 미만 아동을 대상으로 하지 않으며, 아동의 개인정보를 고의로 수집하지
+		않습니다.
+	</p>
+
+	<h2>8. 방침 변경</h2>
+	<p>
+		법령, 서비스, 광고 정책 변경에 따라 본 방침이 수정될 수 있습니다. 변경 시 본 페이지에 수정
+		일자를 함께 게시합니다.
+	</p>
+
+	<h2>9. 문의</h2>
+	<p>
+		개인정보 처리와 관련한 문의는
+		<a href="https://github.com/yooheesu97/yooheesu97.github.io/issues">GitHub Issues</a>를 통해
+		남겨 주세요.
+	</p>
+
+	<p>
+		<a href={withBase('about/')}>About 페이지</a>에서 사이트 소개와 카테고리 구성을 확인할 수
+		있습니다.
+	</p>
+</Layout>

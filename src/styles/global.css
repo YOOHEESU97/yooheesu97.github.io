@@ -338,6 +338,22 @@ img {
 	background: var(--bg-elevated);
 }
 
+.category-badge {
+	display: inline-block;
+	font-size: 0.7rem;
+	font-weight: 700;
+	padding: 0.15rem 0.55rem;
+	border-radius: 999px;
+	color: var(--accent);
+	background: color-mix(in srgb, var(--accent) 12%, transparent);
+	text-decoration: none;
+}
+
+a.category-badge:hover {
+	color: var(--accent-hover);
+	text-decoration: none;
+}
+
 @media (max-width: 768px) {
 	main {
 		padding: 1.75rem 0 3rem;

@@ -1,0 +1,94 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import PostCard from '../../components/PostCard.astro';
+import { SITE_TITLE } from '../../consts';
+import { CATEGORIES, getCategoryBySlug, type CategorySlug } from '../../utils/categories';
+import { withBase } from '../../utils/withBase';
+
+export async function getStaticPaths() {
+	return CATEGORIES.map((category) => ({
+		params: { slug: category.slug },
+	}));
+}
+
+const { slug } = Astro.params;
+const category = getCategoryBySlug(slug ?? '');
+
+if (!category) {
+	return Astro.redirect(withBase('category/'));
+}
+
+const posts = (await getCollection('blog'))
+	.filter((post) => post.data.category === category.slug)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title={`${category.label} | ${SITE_TITLE}`}
+			description={category.description}
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="page-header">
+				<h1>{category.label}</h1>
+				<span class="article-count">{posts.length} Articles</span>
+			</div>
+			<p class="intro">{category.description}</p>
+			{
+				posts.length > 0 ? (
+					<ul class="post-grid">
+						{posts.map((post) => (
+							<li>
+								<PostCard
+									href={withBase(`blog/${post.id}/`)}
+									title={post.data.title}
+									description={post.data.description}
+									pubDate={post.data.pubDate}
+									category={post.data.category}
+									tags={post.data.tags}
+								/>
+							</li>
+						))}
+					</ul>
+				) : (
+					<p class="empty">아직 이 카테고리에 글이 없습니다. 곧 추가할 예정입니다.</p>
+				)
+			}
+			<p class="back-link">
+				<a href={withBase('category/')}>← 모든 카테고리</a>
+			</p>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.intro {
+		margin: -1rem 0 2rem;
+		color: var(--text-muted);
+		font-size: 1.05rem;
+	}
+
+	.empty {
+		padding: 2rem;
+		text-align: center;
+		color: var(--text-muted);
+		background: var(--bg-card);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.back-link {
+		margin-top: 2rem;
+		font-size: 0.9rem;
+		font-weight: 600;
+	}
+</style>

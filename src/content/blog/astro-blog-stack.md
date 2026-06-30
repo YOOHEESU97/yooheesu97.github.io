@@ -2,6 +2,7 @@
 title: 'Astro로 개발자 블로그 만들기'
 description: 'Jekyll, Hugo, Next.js와 비교했을 때 Astro를 선택한 이유'
 pubDate: 2026-06-20
+updatedDate: 2026-06-30
 tags: ['astro', 'blog', 'github-pages']
 ---
 
@@ -32,6 +33,36 @@ tags: ['astro', 'blog', 'github-pages']
 
 솔직히 "코딩 노트 + 미니멀 + 다크모드" 조합이면 Jekyll도 충분한데, React 쪽으로 확장할 여지가 있는 게 Astro가 끌렸습니다.
 
+## 프로젝트 구조 (이 블로그 기준)
+
+```
+src/
+├── content/blog/       # 마크다운 글
+├── components/         # Header, PostCard 등
+├── layouts/            # BlogPost 레이아웃
+├── pages/              # 라우트 (index, blog, category, about, privacy)
+├── styles/global.css
+└── content.config.ts   # 글 스키마 (title, category, tags...)
+```
+
+글은 `src/content/blog/*.md`에 두고, frontmatter로 메타데이터를 관리합니다. 카테고리(Java, React, Hermes Agent)는 `category` 필드로 분류해요.
+
+## 첫 글 추가 방법
+
+```md
+---
+title: '글 제목'
+description: '한 줄 요약'
+pubDate: 2026-06-30
+category: java
+tags: ['java', 'spring']
+---
+
+본문...
+```
+
+`npm run dev`로 로컬 미리보기 후 `main`에 push하면 GitHub Actions가 빌드·배포합니다.
+
 ## GitHub Pages 배포
 
 지금은 저장소 이름을 `yooheesu97.github.io`로 바꿔서 루트에 배포 중입니다. `astro.config.mjs`는 이렇게 맞춰 두었어요.
@@ -41,10 +72,15 @@ tags: ['astro', 'blog', 'github-pages']
 export default defineConfig({
   site: 'https://yooheesu97.github.io',
   base: '/',
+  integrations: [mdx(), sitemap()],
 });
 ```
 
 GitHub Actions로 `npm run build` 후 `dist` 폴더를 Pages에 올리는 방식입니다. push만 하면 자동 배포되니까, 글 쓰는 데만 집중할 수 있어요.
+
+## AdSense·정책 페이지
+
+광고 심사를 받을 때는 **About**, **개인정보처리방침**, 충분한 본문 분량이 중요합니다. 이 블로그도 카테고리 페이지와 정책 문서를 추가해 구조를 보강했습니다.
 
 ## 마무리
 
