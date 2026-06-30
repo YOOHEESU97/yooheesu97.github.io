@@ -1,7 +1,7 @@
 :root {
-	--bg: #e8eef5;
-	--bg-header: #d4e4f7;
-	--bg-header-end: #dce8f4;
+	--bg: #eef1f5;
+	--bg-header: #eef1f5;
+	--bg-header-end: #eef1f5;
 	--bg-card: #ffffff;
 	--bg-elevated: #f4f7fb;
 	--border: #d0dbe8;
@@ -22,8 +22,8 @@
 
 html[data-theme='dark'] {
 	--bg: #0d1117;
-	--bg-header: #161b22;
-	--bg-header-end: #12161c;
+	--bg-header: #0d1117;
+	--bg-header-end: #0d1117;
 	--bg-card: #161b22;
 	--bg-elevated: #1f2428;
 	--border: #30363d;
