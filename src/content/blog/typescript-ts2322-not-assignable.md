@@ -2,11 +2,18 @@
 title: 'TypeScript error TS2322 — Type X is not assignable to type Y 해결'
 description: 'React props, useState 제네릭, API 응답 타입 불일치 때 나는 TS2322 고치기'
 pubDate: 2026-06-28
+updatedDate: 2026-06-30
 category: typescript
 tags: ['typescript', 'react', 'error']
 ---
 
-TypeScript로 React 붙이다 보면 `TS2322: Type 'string | undefined' is not assignable to type 'string'` 같은 메시지를 자주 봅니다. 런타임은 되는데 빌드만 막히는 경우가 많아서, 패턴만 익혀 두면 대응이 빨라져요.
+회사 대시보드에서 사용자 프로필 카드를 붙일 때 이런 에러로 PR 빌드가 막혔습니다. API 스펙에는 `name`만 필수인 줄 알았는데, 실제 응답은 가입 직후 `name`이 비어 있는 케이스가 있더라고요. 브라우저에서는 `undefined`가 그냥 넘어가는데 TypeScript는 `string` prop에 `string | undefined`를 넣지 말라고 막습니다.
+
+```
+TS2322: Type 'string | undefined' is not assignable to type 'string'.
+```
+
+당시에는 "타입이 왜 이렇게 까다롭지?" 싶었는데, 나중에 비슷한 데이터로 화면이 깨진 걸 보고 TS2322가 런타임 버그를 미리 막아 준 거라는 걸 알았어요. 패턴만 익혀 두면 대응이 빨라집니다.
 
 ## TS2322가 말하는 것
 
