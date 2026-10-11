@@ -40,6 +40,11 @@ export const CATEGORIES = [
 		description: 'Astro, GitHub Pages, CI/CD, and deployment notes.',
 	},
 	{
+		slug: 'sql',
+		label: 'SQL',
+		description: 'MariaDB 쿼리, 인덱스, 데이터 정합성에 관한 실무 노트.',
+	},
+	{
 		slug: 'investing',
 		label: 'Investing',
 		description: '기업의 사업과 경쟁 구도를 공부하며 기록한 개인 투자 노트.',
