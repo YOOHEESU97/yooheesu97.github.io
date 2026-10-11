@@ -66,12 +66,11 @@ AdSense 코드는 `<head>`에 넣었는데 "사이트를 확인할 수 없음"�
 1. AdSense에 **`yooheesu97.github.io`만** 등록해 둔 상태 → Google은 루트(`/`)를 확인하는데, 블로그와 코드는 `/my-coding-notes/` 아래에 있었습니다.
 2. **`github.io`를 Custom domain에 넣으려 했음** → Custom domain은 `blog.com` 같은 **직접 산 도메인**용이지, GitHub 기본 주소용이 아니었어요.
 
-### 어떻게 해결했나 (택 1)
+### 당시에는 어떻게 정리했나
 
-- **서브경로 유지:** AdSense URL을 `yooheesu97.github.io/my-coding-notes`로 등록
-- **루트로 옮기기:** 저장소 이름을 `yooheesu97.github.io`로 바꾸고 Astro `base: '/'` 설정 → AdSense URL은 `yooheesu97.github.io`
+저장소 이름을 `yooheesu97.github.io`로 바꾸고 Astro `base: '/'` 설정을 적용했습니다. 덕분에 블로그와 확인 코드가 루트 주소에 놓이게 됐고, 내부 링크도 단순해졌습니다.
 
-저는 후자로 진행했습니다. 루트 주소가 깔끔해서요.
+> **2026-10-11 정정:** 처음 쓴 이 글에는 `yooheesu97.github.io/my-coding-notes`처럼 경로를 붙여 AdSense 사이트로 등록할 수 있다고 적었는데, 현재 [Google의 공식 URL 안내](https://support.google.com/adsense/answer/2784438?hl=ko)에 따르면 등록 주소에는 경로가 들어갈 수 없습니다. 또한 일반적인 하위 도메인은 허용 예시에서 제외되어 있으므로, GitHub Pages 기본 주소로 승인을 준비한다면 독립 도메인을 연결하는 편이 확실합니다. 루트로 옮긴 것만으로 AdSense 승인이 보장되는 것은 아닙니다.
 
 ---
 
@@ -103,9 +102,9 @@ export default defineConfig({
 1. 저장소 Public인지 확인
 2. Pages Source가 **GitHub Actions**인지 확인
 3. 프로젝트 페이지(`/repo-name/`)면 `base`와 **모든 내부 링크**가 일치하는지 확인
-4. AdSense URL = **실제 블로그가 열리는 주소** 그대로 등록
+4. AdSense에는 **경로가 없는 도메인**을 등록하고, 소유권 확인 코드가 그 도메인의 페이지에 있는지 확인
 5. `*.github.io`는 Custom domain 칸에 넣지 말 것
 
 ## 한 줄 정리
 
-> GitHub Pages 404의 90%는 **base 경로와 링크 불일치**, AdSense 확인 실패는 **등록 URL과 실제 사이트 주소 불일치**였습니다. 둘 다 주소만 맞추면 생각보다 금방 풀리더라고요.
+> GitHub Pages의 404는 `base` 경로와 내부 링크를 함께 확인해야 했고, AdSense는 주소 형식과 확인 코드 위치를 별도로 점검해야 했습니다.
