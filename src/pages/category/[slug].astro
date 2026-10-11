@@ -40,7 +40,7 @@ const posts = (await getCollection('blog'))
 		<main>
 			<div class="page-header">
 				<h1>{category.label}</h1>
-				<span class="article-count">{posts.length} Articles</span>
+				<span class="article-count">{posts.length} {posts.length === 1 ? 'Article' : 'Articles'}</span>
 			</div>
 			<p class="intro">{category.description}</p>
 			{

@@ -16,7 +16,7 @@ const activeCategories = getCategoriesWithPosts(posts);
 	<head>
 		<BaseHead
 			title={`Categories | ${SITE_TITLE}`}
-			description="Browse coding notes by Java, Spring, React, TypeScript, Python, Node.js, and more."
+			description="개발 기술과 투자 주제별로 정리한 노트를 둘러보세요."
 		/>
 	</head>
 	<body>
@@ -25,7 +25,7 @@ const activeCategories = getCategoriesWithPosts(posts);
 			<div class="page-header">
 				<h1>Categories</h1>
 			</div>
-			<p class="intro">Browse notes by technology.</p>
+			<p class="intro">관심 있는 주제별로 글을 찾아보세요.</p>
 			<ul class="category-grid">
 				{
 					activeCategories.map((category) => (
@@ -33,7 +33,7 @@ const activeCategories = getCategoriesWithPosts(posts);
 							<a class="category-card" href={withBase(`category/${category.slug}/`)}>
 								<h2>{category.label}</h2>
 								<p>{category.description}</p>
-								<span class="category-count">{category.count} posts</span>
+								<span class="category-count">{category.count} {category.count === 1 ? 'post' : 'posts'}</span>
 							</a>
 						</li>
 					))

@@ -39,6 +39,11 @@ export const CATEGORIES = [
 		label: 'DevOps',
 		description: 'Astro, GitHub Pages, CI/CD, and deployment notes.',
 	},
+	{
+		slug: 'investing',
+		label: 'Investing',
+		description: '기업의 사업과 경쟁 구도를 공부하며 기록한 개인 투자 노트.',
+	},
 ] as const;
 
 export type CategorySlug = (typeof CATEGORIES)[number]['slug'];

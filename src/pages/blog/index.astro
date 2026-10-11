@@ -18,7 +18,7 @@ const posts = (await getCollection('blog')).sort(
 	<head>
 		<BaseHead
 			title={`Notes | ${SITE_TITLE}`}
-			description="30+ developer troubleshooting notes — Java, Spring, React, TypeScript, Python, Node.js, and more."
+			description="개발 경험과 투자 공부를 기록한 노트 모음입니다."
 		/>
 	</head>
 	<body>
@@ -28,7 +28,7 @@ const posts = (await getCollection('blog')).sort(
 				<h1>Notes</h1>
 				<span class="article-count">{posts.length} Articles</span>
 			</div>
-			<p class="intro">개발하면서 정리한 코딩 노트 모음입니다.</p>
+			<p class="intro">개발 경험과 투자 공부를 정리한 노트 모음입니다.</p>
 			<ul class="post-grid">
 				{
 					posts.map((post) => (
