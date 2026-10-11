@@ -46,8 +46,8 @@ export const CATEGORIES = [
 	},
 	{
 		slug: 'investing',
-		label: 'Investing',
-		description: '기업의 사업과 경쟁 구도를 공부하며 기록한 개인 투자 노트.',
+		label: '투자 공부',
+		description: '직장인을 위한 ISA·연금·ETF 기초부터 미국 시장과 AI 산업을 읽는 기록까지.',
 	},
 ] as const;
 
