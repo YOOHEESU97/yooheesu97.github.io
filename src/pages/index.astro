@@ -6,7 +6,6 @@ import Header from '../components/Header.astro';
 import PostCard from '../components/PostCard.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { getCategoriesWithPosts } from '../utils/categoryPosts';
-import { getReadingTimeMinutes } from '../utils/readingTime';
 import { withBase } from '../utils/withBase';
 
 const posts = (await getCollection('blog'))
@@ -47,10 +46,10 @@ const activeCategories = getCategoriesWithPosts(allPosts);
 									title={post.data.title}
 									description={post.data.description}
 									pubDate={post.data.pubDate}
+									publishedAt={post.data.publishedAt}
 									updatedDate={post.data.updatedDate}
 									category={post.data.category}
 									tags={post.data.tags}
-									readingTimeMinutes={getReadingTimeMinutes(post.body ?? '')}
 								/>
 							</li>
 						))

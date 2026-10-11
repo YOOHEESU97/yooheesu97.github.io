@@ -2,6 +2,7 @@
 title: 'DB에 저장한 특수문자가 HTML 엔티티로 보일 때'
 description: 'HTML 이스케이프가 저장 단계인지 출력 단계인지 구분하고 중복 이스케이프를 피하는 방법'
 pubDate: 2026-10-11
+publishedAt: 2026-10-11T23:17:14+09:00
 category: spring
 tags: ['html-escape', 'jsp', 'xss']
 ---

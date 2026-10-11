@@ -5,7 +5,6 @@ import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import PostCard from '../../components/PostCard.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
-import { getReadingTimeMinutes } from '../../utils/readingTime';
 import { withBase } from '../../utils/withBase';
 
 const posts = (await getCollection('blog')).sort(
@@ -38,10 +37,10 @@ const posts = (await getCollection('blog')).sort(
 								title={post.data.title}
 								description={post.data.description}
 								pubDate={post.data.pubDate}
+								publishedAt={post.data.publishedAt}
 								updatedDate={post.data.updatedDate}
 								category={post.data.category}
 								tags={post.data.tags}
-								readingTimeMinutes={getReadingTimeMinutes(post.body ?? '')}
 							/>
 						</li>
 					))

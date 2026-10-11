@@ -2,6 +2,7 @@
 title: 'MariaDB INSERT 오류: 빈 문자열, NULL, DECIMAL 구분하기'
 description: '공백을 NULL로 바꿨는데도 INSERT가 실패할 때 컬럼 제약과 파라미터 타입을 확인하는 방법'
 pubDate: 2026-10-11
+publishedAt: 2026-10-11T23:17:14+09:00
 category: sql
 tags: ['mariadb', 'null', 'data-validation']
 ---

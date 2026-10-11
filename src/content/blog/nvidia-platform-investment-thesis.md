@@ -2,6 +2,7 @@
 title: '엔비디아의 진짜 해자는 GPU가 아니라 플랫폼일까?'
 description: '바이오와 양자컴퓨팅까지 확장하는 엔비디아를 보며 떠올린 장기 투자 가설과 반론'
 pubDate: 2026-10-11
+publishedAt: 2026-10-11T23:11:14+09:00
 category: investing
 tags: ['nvidia', 'ai-infrastructure', 'semiconductor']
 ---

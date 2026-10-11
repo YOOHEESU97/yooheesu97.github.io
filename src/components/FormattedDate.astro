@@ -1,17 +1,17 @@
 ---
 interface Props {
 	date: Date;
+	showTime?: boolean;
 }
 
-const { date } = Astro.props;
+const { date, showTime = false } = Astro.props;
+const formatted = new Intl.DateTimeFormat('ko-KR', {
+	timeZone: showTime ? 'Asia/Seoul' : 'UTC',
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+	...(showTime ? { hour: '2-digit' as const, minute: '2-digit' as const, hour12: false } : {}),
+}).format(date);
 ---
 
-<time datetime={date.toISOString()}>
-	{
-		date.toLocaleDateString('ko-KR', {
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric',
-		})
-	}
-</time>
+<time datetime={showTime ? date.toISOString() : date.toISOString().slice(0, 10)}>{formatted}</time>

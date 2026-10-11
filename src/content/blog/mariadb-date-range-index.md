@@ -2,6 +2,7 @@
 title: 'MariaDB 날짜 검색: 종료일 포함과 기간 겹침을 정확히 쓰기'
 description: 'YYYYMMDD 입력을 날짜로 바꾸고 반개구간과 기간 겹침 조건으로 검색하는 방법'
 pubDate: 2026-10-11
+publishedAt: 2026-10-11T23:17:14+09:00
 category: sql
 tags: ['mariadb', 'date-range', 'index']
 ---

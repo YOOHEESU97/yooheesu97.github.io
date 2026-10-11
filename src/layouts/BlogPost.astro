@@ -19,7 +19,6 @@ type Heading = {
 };
 
 type Props = PostData & {
-	readingTimeMinutes?: number;
 	headings?: Heading[];
 	relatedPosts?: CollectionEntry<'blog'>[];
 	pageType?: 'website' | 'article';
@@ -29,10 +28,10 @@ const {
 	title,
 	description,
 	pubDate,
+	publishedAt,
 	updatedDate,
 	category,
 	tags,
-	readingTimeMinutes,
 	headings = [],
 	relatedPosts = [],
 	pageType = 'article',
@@ -57,8 +56,7 @@ const isArticle = pageType === 'article';
 				<header class="post-header">
 					<h1>{title}</h1>
 					<p class="post-meta">
-						<FormattedDate date={pubDate} />에 작성
-						{readingTimeMinutes && <span class="reading-time">· 약 {readingTimeMinutes}분</span>}
+						<FormattedDate date={publishedAt ?? pubDate} showTime={Boolean(publishedAt)} />에 작성
 						{
 							category && (
 								<a class="category-badge" href={withBase(`category/${category}/`)}>
@@ -138,10 +136,6 @@ const isArticle = pageType === 'article';
 		align-items: center;
 		justify-content: center;
 		gap: 0.5rem;
-	}
-
-	.reading-time {
-		white-space: nowrap;
 	}
 
 	.tags {

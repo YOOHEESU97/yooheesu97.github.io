@@ -2,6 +2,7 @@
 title: '월별 데이터 이관이 느릴 때: EXPLAIN과 복합 인덱스 확인'
 description: '월 단위 배치 조회에서 스캔 범위를 줄이고 이관 결과를 검증하는 순서'
 pubDate: 2026-10-11
+publishedAt: 2026-10-11T23:17:14+09:00
 category: sql
 tags: ['mariadb', 'index', 'data-migration']
 ---

@@ -2,6 +2,7 @@
 title: 'MariaDB 목록 쿼리 최적화: LIMIT 뒤에 집계하기'
 description: '전체 데이터를 JOIN·집계한 뒤 20건을 자르는 쿼리를 페이지 선정 후 집계하는 구조로 바꾸는 방법'
 pubDate: 2026-10-11
+publishedAt: 2026-10-11T23:17:14+09:00
 category: sql
 tags: ['mariadb', 'query-performance', 'pagination']
 ---
