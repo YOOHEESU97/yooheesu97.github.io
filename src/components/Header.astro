@@ -107,34 +107,36 @@ import ThemeToggle from './ThemeToggle.astro';
 
 	@media (max-width: 768px) {
 		nav {
-			align-items: flex-start;
-			flex-direction: column;
-			gap: 0.65rem;
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			gap: 0.5rem;
 			padding: 0.75rem 0;
 		}
 
 		.header-right {
-			width: 100%;
+			display: contents;
+		}
+
+		.header-right :global(.theme-toggle) {
+			grid-column: 2;
+			grid-row: 1;
 		}
 
 		.nav-scroll {
-			overflow-x: auto;
-			-webkit-overflow-scrolling: touch;
-			scrollbar-width: none;
-			mask-image: linear-gradient(to right, #000 92%, transparent);
-		}
-
-		.nav-scroll::-webkit-scrollbar {
-			display: none;
+			grid-column: 1 / -1;
+			grid-row: 2;
+			width: 100%;
 		}
 
 		.nav-links {
-			width: max-content;
-			padding-right: 1.5rem;
+			flex-wrap: wrap;
+			gap: 0.2rem;
 		}
 
 		.nav-links :global(a) {
-			padding: 0.5rem 0.65rem;
+			justify-content: center;
+			flex: 1 1 auto;
+			padding: 0.5rem 0.4rem;
 			font-size: 0.825rem;
 		}
 	}
