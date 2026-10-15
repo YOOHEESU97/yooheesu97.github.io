@@ -5,11 +5,10 @@ import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import PostCard from '../../components/PostCard.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { sortPostsNewestFirst } from '../../utils/sortPosts';
 import { withBase } from '../../utils/withBase';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const posts = (await getCollection('blog')).sort(sortPostsNewestFirst);
 ---
 
 <!doctype html>

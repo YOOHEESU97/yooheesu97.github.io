@@ -1,4 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
+import { sortPostsNewestFirst } from './sortPosts';
 
 export function getRelatedPosts(
 	post: CollectionEntry<'blog'>,
@@ -20,7 +21,7 @@ export function getRelatedPosts(
 		.filter(({ score }) => score > 0)
 		.sort((a, b) => {
 			if (b.score !== a.score) return b.score - a.score;
-			return b.candidate.data.pubDate.valueOf() - a.candidate.data.pubDate.valueOf();
+			return sortPostsNewestFirst(a.candidate, b.candidate);
 		})
 		.slice(0, limit)
 		.map(({ candidate }) => candidate);

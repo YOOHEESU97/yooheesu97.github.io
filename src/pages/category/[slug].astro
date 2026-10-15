@@ -6,6 +6,7 @@ import Header from '../../components/Header.astro';
 import PostCard from '../../components/PostCard.astro';
 import { SITE_TITLE } from '../../consts';
 import { CATEGORIES, getCategoryBySlug, type CategorySlug } from '../../utils/categories';
+import { sortPostsNewestFirst } from '../../utils/sortPosts';
 import { withBase } from '../../utils/withBase';
 
 export async function getStaticPaths() {
@@ -23,7 +24,7 @@ if (!category) {
 
 const posts = (await getCollection('blog'))
 	.filter((post) => post.data.category === category.slug)
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+	.sort(sortPostsNewestFirst);
 ---
 
 <!doctype html>
