@@ -6,10 +6,11 @@ import Header from '../components/Header.astro';
 import PostCard from '../components/PostCard.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { getCategoriesWithPosts } from '../utils/categoryPosts';
+import { comparePostsByDateDesc } from '../utils/postDate';
 import { withBase } from '../utils/withBase';
 
 const posts = (await getCollection('blog'))
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.sort(comparePostsByDateDesc)
 	.slice(0, 4);
 
 const allPosts = await getCollection('blog');
