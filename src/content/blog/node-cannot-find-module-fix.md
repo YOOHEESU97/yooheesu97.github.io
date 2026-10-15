@@ -2,17 +2,18 @@
 title: 'Node.js Error: Cannot find module — 경로·설치·ESM 해결'
 description: 'npm install 누락, 상대경로 오타, type module과 require 혼용'
 pubDate: 2026-06-29
+updatedDate: 2026-06-30
 category: nodejs
 tags: ['nodejs', 'npm', 'error']
 ---
 
-Node 실행 시 가장 흔한 에러 중 하나입니다.
+GitHub Actions로 Astro 블로그 배포 파이프라인을 붙였을 때, 로컬 `npm run build`는 되는데 CI에서만 터졌습니다. 에러 메시지는 짧은데 원인 찾는 데 시간이 꽤 걸렸어요.
 
 ```
 Error: Cannot find module './utils/logger'
 ```
 
-모듈 해석이 실패했다는 뜻인데, 원인은 설치·경로·모듈 시스템(CJS/ESM) 중 하나입니다.
+로컬에서는 `node_modules`가 이미 있어서 통과했는데, CI 캐시가 꼬이면서 `npm ci` 직후에도 특정 패키지가 비어 있었습니다. 경로는 맞는데 **대소문자만 다른 import**(`./Utils/logger` vs `./utils/logger`)도 Linux runner에서만 재현됐습니다. Cannot find module은 설치·경로·모듈 시스템(CJS/ESM) 중 하나인 경우가 대부분입니다.
 
 ## 원인별 해결
 

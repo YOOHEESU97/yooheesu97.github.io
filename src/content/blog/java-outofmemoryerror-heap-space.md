@@ -2,17 +2,18 @@
 title: 'Java java.lang.OutOfMemoryError: Java heap space — 힙 부족 대응'
 description: '-Xmx 조정, 메모리 누수 의심 지점, heap dump로 원인 찾기'
 pubDate: 2026-06-29
+updatedDate: 2026-06-30
 category: java
 tags: ['java', 'jvm', 'memory']
 ---
 
-장시간 돌아가는 Java 서버에서:
+야간 배치가 돌던 Spring 서버에서, 오전 9시쯤 슬랙에 OOM 알림이 왔습니다. 재시작하면 한동안은 괜찮은데 같은 시간대에 또 터지는 패턴이었어요. 로그에는 원인 설명 없이 한 줄만 남아 있습니다.
 
 ```
 java.lang.OutOfMemoryError: Java heap space
 ```
 
-JVM 힙이 가득 찼다는 뜻입니다. `-Xmx`를 올리면 임시로 살 수 있지만, **왜 메모리를 먹는지**를 봐야 재발을 막습니다.
+당장은 `-Xmx`를 1g에서 2g로 올려 서비스를 살렸지만, heap dump를 뜯어보니 **처리 끝난 CSV 행을 List에 계속 쌓아 두던 코드**가 범인이었습니다. 힙을 키우면 며칠은 버틸 수 있어도, 왜 메모리를 먹는지를 안 보면 같은 시각에 다시 터집니다.
 
 ## 1. 즉시 응급 — 힙 상한 조정
 
