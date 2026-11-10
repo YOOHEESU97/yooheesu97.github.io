@@ -1,0 +1,233 @@
+---
+title: 'TypeScript 1주 차 학습 노트 — 값과 타입부터 find까지'
+description: '객체·배열·함수와 map·filter·find를 같은 예제 데이터로 익히고 직접 답을 확인합니다'
+pubDate: 2026-11-11
+category: typescript
+tags: ['typescript', 'javascript', 'array', 'learning']
+---
+
+import AnswerCheck from '../../components/AnswerCheck.astro';
+
+오늘은 값과 타입에서 출발해 객체·배열, 함수, `map`·`filter`·`find`, 값이 없을 때의 처리까지 공부했습니다. 여러 문법을 따로 외우기보다 같은 데이터를 계속 살펴보니, 각 단계에서 무엇이 반환되는지 비교하기 쉬웠습니다. `unknown`은 다음 수업에서 다룹니다.
+
+## 계속 사용할 예제 데이터
+
+```ts
+const rows = [
+  { 기준년월일: '20261111', 총합: '120' },
+  { 기준년월일: '20261110', 총합: '90' },
+];
+```
+
+`rows`는 **배열**이고, `rows[0]`과 `rows[1]`은 각각 **행 객체**입니다. `총합`은 숫자처럼 보여도 따옴표가 있으므로 문자열입니다.
+
+## 1. 값, 변수, 타입
+
+```ts
+const count = 206;
+const label = '총건수';
+
+const value: number = Number('206'); // 숫자 206
+```
+
+`206`은 숫자이고 `'206'`은 문자열입니다. `count`는 값에 붙인 변수 이름이에요. `: number`는 숫자 타입을 뜻하지만 값을 변환하지는 않습니다. 실제 변환은 `Number('206')`이 합니다. 함수 이름 `Number`와 타입 이름 `number`의 대소문자도 다릅니다.
+
+기본 타입 `number`는 숫자 종류를 나타냅니다. TypeScript에는 `206`처럼 특정 값만 허용하는 **리터럴 타입**도 있고, `const`로 선언한 값은 이런 더 좁은 타입으로 추론될 수 있습니다.
+
+```ts
+const total = '120';
+
+total + 1;         // '1201': 문자열을 이어 붙임
+Number(total) + 1; // 121: 숫자를 더함
+```
+
+`Number(...)`가 항상 유효한 숫자를 만드는 것은 아닙니다. 예를 들어 `Number('abc')`는 `NaN`이므로 외부 데이터는 변환 결과도 확인해야 합니다.
+
+**직접 확인 1**
+
+```ts
+Number(rows[0].총합) + 1
+```
+
+<AnswerCheck id="number-plus-one" question="위 식의 결과는 무엇인가요?" answer="121" explanation="'120'을 숫자 120으로 바꾼 뒤 1을 더합니다." />
+
+## 2. 객체와 배열에서 값 꺼내기
+
+```ts
+const data = {
+  총건수: '2',
+  ARRAY수1: rows,
+};
+
+data.총건수;     // '2'
+data['총건수'];   // '2'
+data['ARRAY수1']; // rows 배열
+```
+
+객체의 속성은 `.` 또는 `[]`로 읽습니다. `()`는 함수를 **호출할 때** 사용하므로 `data('총건수')`처럼 객체를 함수로 호출할 수는 없습니다.
+
+배열은 **0부터** 순서를 셉니다. `rows.length`는 항목 수인 `2`, `rows[0]`은 첫 번째 행 객체, `rows[0].기준년월일`은 첫 행의 날짜 `'20261111'`입니다. `rows[0]`을 날짜 자체로 생각하지 않는 것이 핵심이에요.
+
+**직접 확인 2**
+
+```ts
+rows[1].기준년월일
+```
+
+<AnswerCheck id="second-date" question="위 식의 결과값을 따옴표 없이 입력해 보세요." answer="20261110" explanation="배열의 인덱스 1은 둘째 행입니다. 그 행의 기준년월일을 읽습니다." />
+
+## 3. 함수: 입력을 받아 결과를 돌려주기
+
+```ts
+function getTotal(row: { 총합: string }): number {
+  return Number(row.총합);
+}
+
+const firstTotal = getTotal(rows[0]); // 120
+```
+
+`row: { 총합: string }`은 `row`라는 이름으로 객체를 받고, 그 객체의 `총합`은 문자열이어야 한다는 뜻입니다. 괄호 뒤의 `: number`는 반환값의 타입입니다.
+
+```text
+rows[0]
+→ { 기준년월일: '20261111', 총합: '120' }
+→ 함수 안에서 이 객체를 row라고 부름
+→ row.총합은 문자열 '120'
+→ Number(row.총합)은 숫자 120
+→ return으로 숫자 120을 호출한 곳에 전달
+```
+
+`return`은 호출한 곳에 값을 전달합니다. `console.log`는 출력만 하므로 함수의 결과값을 대신하지 않습니다.
+
+```ts
+function sumRows(
+  first: { 총합: string },
+  second: { 총합: string },
+): number {
+  const firstTotal = Number(first.총합);
+  const secondTotal = Number(second.총합);
+  return firstTotal + secondTotal;
+}
+
+sumRows(rows[0], rows[1]); // 이 데이터에서는 120 + 90 = 210
+```
+
+함수 코드만으로 실제 합계가 언제나 `210`이라고 알 수는 없습니다. **지금 주어진 `rows` 값**으로 호출했기 때문에 계산할 수 있습니다. API에서 받은 값이라면 실행 후에야 실제 합계를 알 수 있습니다.
+
+참고로 TypeScript에서 `noUncheckedIndexedAccess`를 켜면 `rows[0]`은 없을 수도 있는 값으로 다뤄집니다. 길이가 확인되지 않은 배열이라면 행이 있는지 검사한 후 함수에 전달하세요.
+
+## 4. `map`: 각 항목을 변환하기
+
+```ts
+const totals = rows.map((row) => Number(row.총합));
+// [120, 90], 타입은 number[]
+
+const dates = rows.map((row) => row.기준년월일);
+// ['20261111', '20261110'], 타입은 string[]
+```
+
+`map`은 각 항목에 함수를 적용하고, **함수가 반환한 값들로 새 배열**을 만듭니다. 여기서는 항목이 2개이므로 결과도 2개입니다. `(row) => ...`는 짧게 쓴 함수이고, `row`에는 행이 차례로 들어옵니다.
+
+중괄호로 함수 본문을 감쌌다면 결과를 돌려줄 때 `return`을 적어야 합니다.
+
+```ts
+rows.map((row) => {
+  return Number(row.총합) + 10;
+});
+// [130, 100]
+
+[1, 2, 3].map((n) => n > 1);
+// [false, true, true]
+```
+
+**직접 확인 3**
+
+```ts
+rows.map((row) => Number(row.총합))
+```
+
+<AnswerCheck id="mapped-type" question="이 식의 결과 타입은 무엇인가요? 예: string[]" answer="number[]" explanation="각 행에서 Number(...)가 숫자를 반환하므로 결과는 숫자 배열입니다." />
+
+## 5. `filter`: 조건에 맞는 원래 항목만 남기기
+
+```ts
+const largeRows = rows.filter((row) => Number(row.총합) > 100);
+// [{ 기준년월일: '20261111', 총합: '120' }]
+```
+
+`filter`는 조건이 `true`인 **원래 행**을 남깁니다. `Number(row.총합)`은 비교에만 사용했으므로 결과 행의 `총합`은 여전히 문자열 `'120'`입니다.
+
+`map`은 함수의 **결과값**을 모으고 항목 수를 유지합니다. `filter`는 조건으로 남길지를 판단하고 **원래 항목**을 모으므로 항목 수가 줄 수 있습니다. 두 메서드를 이어 쓸 수도 있습니다.
+
+```ts
+rows
+  .filter((row) => Number(row.총합) > 100)
+  .map((row) => Number(row.총합));
+// [120]
+```
+
+**직접 확인 4**
+
+```ts
+rows.filter((row) => Number(row.총합) < 100).length
+```
+
+<AnswerCheck id="filtered-length" question="조건에 맞게 남은 행은 몇 개인가요?" answer="1" explanation="총합이 100보다 작은 행은 '90'인 둘째 행 하나입니다." />
+
+## 6. `find`: 조건에 맞는 첫 항목 하나 찾기
+
+```ts
+const selected = rows.find(
+  (row) => row.기준년월일 === '20261110',
+);
+// { 기준년월일: '20261110', 총합: '90' }
+
+rows.find((row) => Number(row.총합) > 200);
+// undefined
+```
+
+`filter`는 배열을 반환하고 `find`는 **처음 맞는 항목 하나**를 반환합니다. 없으면 `undefined`입니다. 따라서 TypeScript는 `find`의 결과를 행 객체 또는 `undefined`로 봅니다. 현재 데이터에서 찾았더라도 다른 데이터에서는 못 찾을 수 있어요.
+
+**직접 확인 5**
+
+```ts
+rows.find((row) => row.기준년월일 === '없는 날짜')
+```
+
+<AnswerCheck id="not-found" question="조건에 맞는 행이 없을 때의 결과는 무엇인가요?" answer="undefined" explanation="find는 일치하는 항목을 못 찾으면 undefined를 반환합니다." />
+
+## 7. `?.`와 `??`: 항목이 없을 때 처리하기
+
+```ts
+const selected = rows.find(
+  (row) => row.기준년월일 === '20261111',
+);
+
+const total = selected?.총합 ?? '없음';
+// 문자열 '120'
+```
+
+`selected?.총합`은 행이 있으면 `총합`을 읽고, 없으면 오류 대신 `undefined`를 얻습니다. `?? '없음'`은 왼쪽이 `null` 또는 `undefined`일 때만 대체 값을 사용합니다. 여기서는 행을 찾았으므로 숫자 `120`이 아니라 문자열 `'120'`입니다.
+
+**직접 확인 6**
+
+```ts
+rows.find((row) => row.기준년월일 === '없는 날짜')?.총합 ?? '없음'
+```
+
+<AnswerCheck id="missing-total" question="위 식의 결과값을 따옴표 없이 입력해 보세요." answer="없음" explanation="find의 결과가 undefined이므로 ?.의 결과도 undefined가 되고, ??가 '없음'을 선택합니다." />
+
+## 오늘의 핵심 구분
+
+```ts
+rows[0]                  // 행 객체
+rows[0].총합             // 문자열 '120'
+getTotal(rows[0])        // 숫자 120
+rows.map(getTotal)       // 숫자 배열 [120, 90]
+rows.filter((row) => Number(row.총합) > 100) // 원래 행들의 배열
+rows.find((row) => Number(row.총합) > 100)   // 첫 행 하나 또는 undefined
+```
+
+같은 데이터라도 **행 객체인지, 속성 값인지, 변환한 숫자인지, 배열인지**에 따라 다음에 사용할 수 있는 연산이 달라집니다. 코드를 읽을 때 각 표현식의 결과를 먼저 예상해 보려고 합니다. 비슷한 고민을 하시는 분들께 도움이 되었으면 좋겠습니다.
+
+참고: [TypeScript Handbook — Everyday Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html), [Narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html), [MDN — Array.prototype.map()](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/map)

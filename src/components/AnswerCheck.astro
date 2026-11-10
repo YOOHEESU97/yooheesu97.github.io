@@ -1,0 +1,125 @@
+---
+type Props = {
+	id: string;
+	question: string;
+	answer: string;
+	explanation: string;
+};
+
+const { id, question, answer, explanation } = Astro.props;
+---
+
+<form class="answer-check" data-answer={answer} data-explanation={explanation}>
+	<label for={id}>{question}</label>
+	<div class="answer-controls">
+		<input id={id} name="answer" type="text" autocomplete="off" required aria-describedby={`${id}-result`} />
+		<button type="submit">정답 확인</button>
+	</div>
+	<p id={`${id}-result`} class="answer-result" role="status" aria-live="polite" aria-atomic="true"></p>
+</form>
+
+<script>
+	function normalizeAnswer(value: string): string {
+		return value
+			.trim()
+			.replace(/^(['"`])(.*)\1$/, '$2')
+			.replace(/\s+/g, '')
+			.toLowerCase();
+	}
+
+	document.querySelectorAll<HTMLFormElement>('.answer-check').forEach((form) => {
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const input = form.querySelector<HTMLInputElement>('input[name="answer"]');
+			const result = form.querySelector<HTMLElement>('.answer-result');
+			if (!input || !result) return;
+
+			const expected = form.dataset.answer ?? '';
+			const correct = normalizeAnswer(input.value) === normalizeAnswer(expected);
+			result.dataset.correct = String(correct);
+			result.textContent = correct
+				? `정답입니다. ${form.dataset.explanation ?? ''}`
+				: `아쉽습니다. 정답은 ${expected}입니다. ${form.dataset.explanation ?? ''}`;
+		});
+	});
+</script>
+
+<style>
+	.answer-check {
+		margin: 1rem 0 1.5rem;
+		padding: 1rem;
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		background: var(--bg-elevated);
+	}
+
+	.answer-check label {
+		display: block;
+		margin-bottom: 0.6rem;
+		font-weight: 600;
+	}
+
+	.answer-controls {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+	}
+
+	.answer-controls input {
+		flex: 1 1 12rem;
+		min-width: 0;
+		padding: 0.55rem 0.7rem;
+		border: 1px solid var(--border);
+		border-radius: 8px;
+		background: var(--bg-card);
+		color: var(--text);
+		font: inherit;
+	}
+
+	.answer-controls input:focus-visible,
+	.answer-controls button:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
+	}
+
+	.answer-controls button {
+		padding: 0.55rem 0.9rem;
+		border: 1px solid var(--accent);
+		border-radius: 8px;
+		background: var(--accent);
+		color: #fff;
+		font: inherit;
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	.answer-controls button:hover {
+		background: var(--accent-hover);
+		border-color: var(--accent-hover);
+	}
+
+	.answer-result {
+		margin: 0.7rem 0 0;
+		font-size: 0.9rem;
+	}
+
+	.answer-result:empty {
+		display: none;
+	}
+
+	.answer-result[data-correct='true'] {
+		color: #18713a;
+	}
+
+	.answer-result[data-correct='false'] {
+		color: #b33b24;
+	}
+
+	:global(html[data-theme='dark']) .answer-result[data-correct='true'] {
+		color: #7edda0;
+	}
+
+	:global(html[data-theme='dark']) .answer-result[data-correct='false'] {
+		color: #ff9a87;
+	}
+</style>
