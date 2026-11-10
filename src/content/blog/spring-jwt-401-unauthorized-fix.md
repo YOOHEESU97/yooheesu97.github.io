@@ -2,11 +2,14 @@
 title: 'Spring Security JWT 401 Unauthorized — 토큰 검증 실패 해결'
 description: 'Bearer 토큰 형식, secret 불일치, 만료·CORS에서 나는 401 디버깅'
 pubDate: 2026-06-29
+updatedDate: 2026-06-30
 category: spring
 tags: ['spring', 'security', 'jwt']
 ---
 
-Spring Boot + JWT API를 붙이면 클라이언트는 `401 Unauthorized`만 받고 원인은 로그에 묻혀 있는 경우가 많습니다. 필터 체인·헤더 형식·secret 불일치 중 하나인데, 패턴만 익혀 두면 빠르게 좁혀집니다.
+React 프론트와 Spring Boot API를 붙이는 프로젝트에서, Postman으로는 200이 나오는데 브라우저에서만 전부 `401 Unauthorized`가 떴습니다. 프론트 코드를 한참 뒤져다가 알고 보니 `Authorization` 헤더에 토큰만 넣고 **`Bearer ` 접두사를 빼먹은 것**이었어요. 서버 로그에는 "Invalid JWT" 한 줄만 남아 있어서 처음엔 secret 불일치인 줄 알고 `.env`를 여러 번 갈아엎었습니다.
+
+로컬에서는 우연히 맞았던 설정이 스테이징에서 깨지는 경우도 있었는데, 발급 서버와 검증 서버의 `jwt.secret`이 달랐더라고요. 401은 증상만 같고 원인은 필터 체인·헤더 형식·secret 불일치 중 하나인 경우가 많아서, 패턴만 익혀 두면 빠르게 좁혀집니다.
 
 ## 401이 나는 대표 원인
 

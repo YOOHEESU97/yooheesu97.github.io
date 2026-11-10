@@ -2,18 +2,19 @@
 title: 'React Hydration failed — Text content does not match server-rendered HTML'
 description: 'SSR/Next/Astro+React에서 hydration mismatch 원인과 useEffect·suppressHydrationWarning'
 pubDate: 2026-06-29
+updatedDate: 2026-06-30
 category: react
 tags: ['react', 'ssr', 'hydration']
 ---
 
-Next.js나 Astro에 React island를 쓰다 보면 콘솔에 이런 경고가 뜹니다.
+이 블로그를 Astro로 옮기면서 헤더에 다크 모드 토글을 React island로 붙였는데, 로컬에서는 멀쩡한데 배포 직후 콘솔에 hydration 경고가 잔뜩 떴습니다. 화면은 보이는데 글 목록 카드가 잠깐 깜빡이고, 새로고침할 때마다 같은 메시지가 반복됐어요.
 
 ```
 Warning: Text content did not match. Server: "..." Client: "..."
 Error: Hydration failed because the initial UI does not match what was rendered on the server.
 ```
 
-서버 HTML과 클라이언트 첫 렌더 결과가 **한 글자라도 다르면** React가 hydration에 실패합니다.
+원인을 찾아보니 `localStorage`에 저장된 테마 값을 **첫 렌더에서 바로 읽고 있었던 것**이었습니다. 서버는 기본 라이트 HTML을 보내는데, 클라이언트는 저장된 `dark` 클래스를 먼저 그리니 한 글자·한 클래스만 달라도 React가 hydration에 실패합니다.
 
 ## 흔한 원인
 
